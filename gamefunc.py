@@ -12,6 +12,8 @@ def checkEvents(ai_setting, screen, ship, bullets):
             ship.moving_l = True
         elif event.key == pygame.K_SPACE:
             fireBullets(ai_setting, screen, ship, bullets)
+        elif event.key == pygame.K_q:
+            sys.exit()
     def checkKeyup(event, ship):
         '''respond to key releases'''
         if event.key == pygame.K_RIGHT:
@@ -27,7 +29,7 @@ def checkEvents(ai_setting, screen, ship, bullets):
         elif event.type == pygame.KEYUP:
             checkKeyup(event, ship)                
             
-def updateScreen(ai_setting, screen, ship, bullets):
+def updateScreen(ai_setting, screen, ship, alien, bullets):
     '''updt img on scrn and flip to the new screen'''
     screen.fill(ai_setting.bg_color)
     #redrw blt behind ship & alien
@@ -35,6 +37,7 @@ def updateScreen(ai_setting, screen, ship, bullets):
         bullet.drawBullet()
     #redraw the screen drng each loop pass
     ship.blitme()
+    alien.blitme()
     
     #make the most recent drn action on the screen
     pygame.display.flip()
